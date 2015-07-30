@@ -15,7 +15,6 @@ import com.tencent.android.tpush.XGPushManager;
 
 public class MainActivity extends AppCompatActivity{
     Button btn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
