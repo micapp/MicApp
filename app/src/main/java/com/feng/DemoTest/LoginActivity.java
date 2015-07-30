@@ -1,17 +1,37 @@
 package com.feng.DemoTest;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.dd.CircularProgressButton;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends AppCompatActivity {
 
+    com.dd.CircularProgressButton progressButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        progressButton= (CircularProgressButton) findViewById(R.id.btn_login_login);
+        progressButton.setIndeterminateProgressMode(true);
+        progressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (progressButton.getProgress() == 0) {
+                    progressButton.setProgress(50);
+                } else if (progressButton.getProgress() == 100) {
+                    progressButton.setProgress(0);
+                } else {
+                    progressButton.setProgress(100);
+                }
+            }
+        });
+
+
     }
 
     @Override
