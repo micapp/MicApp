@@ -9,27 +9,20 @@ import android.view.View;
 import com.dd.CircularProgressButton;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
 
-    com.dd.CircularProgressButton progressButton;
+    com.dd.CircularProgressButton progressButton,getcodeButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         progressButton= (CircularProgressButton) findViewById(R.id.btn_login_login);
+        getcodeButton= (CircularProgressButton) findViewById(R.id.btn_login_getcode);
         progressButton.setIndeterminateProgressMode(true);
-        progressButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (progressButton.getProgress() == 0) {
-                    progressButton.setProgress(50);
-                } else if (progressButton.getProgress() == 100) {
-                    progressButton.setProgress(0);
-                } else {
-                    progressButton.setProgress(100);
-                }
-            }
-        });
+        getcodeButton.setIndeterminateProgressMode(true);
+        progressButton.setOnClickListener(new MyTestClick(progressButton));
+        getcodeButton.setOnClickListener(new MyTestClick(getcodeButton));
+
 
 
     }
@@ -54,5 +47,23 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    class MyTestClick implements View.OnClickListener{
+        CircularProgressButton cpBtn;
+
+        public MyTestClick(CircularProgressButton cpBtn) {
+            this.cpBtn = cpBtn;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (cpBtn.getProgress() == 0) {
+                cpBtn.setProgress(50);
+            } else if (cpBtn.getProgress() == 100) {
+                cpBtn.setProgress(0);
+            } else {
+                cpBtn.setProgress(100);
+            }
+        }
     }
 }
