@@ -113,6 +113,10 @@
             android:name=".LoginSuccessActivity"
             android:label="@string/title_activity_login_success" >
         </activity>
+        <activity
+            android:name=".MessageActivity"
+            android:label="@string/title_activity_message" >
+        </activity>
     </application>
 
 </manifest>

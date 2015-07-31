@@ -14,5 +14,11 @@
         android:text="登陆test"
         android:id="@+id/btn_main_login"
         android:layout_below="@+id/tv_main_hint"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="主界面Test"
+        android:id="@+id/btn_main_main"
+        android:layout_below="@+id/btn_main_login"/>
 
 </RelativeLayout>

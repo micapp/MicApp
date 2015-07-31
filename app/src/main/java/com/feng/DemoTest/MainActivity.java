@@ -14,7 +14,7 @@ import com.tencent.android.tpush.XGPushManager;
 
 
 public class MainActivity extends AppCompatActivity{
-    Button btn;
+    Button btn,btnMain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -30,7 +30,13 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(new Intent(MainActivity.this,LoginActivity.class));
             }
         });
-
+        btnMain= (Button) findViewById(R.id.btn_main_main);
+        btnMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MessageActivity.class));
+            }
+        });
 
     }
 
