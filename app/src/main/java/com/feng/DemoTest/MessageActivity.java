@@ -58,8 +58,6 @@ public class MessageActivity extends AppCompatActivity{
             }
         });
         myRecycler.setAdapter(stringAdapter);
-
-
     }
 
     public String getListString(int position) {
