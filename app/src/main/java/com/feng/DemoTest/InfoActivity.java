@@ -1,28 +1,60 @@
 package com.feng.DemoTest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import com.dd.CircularProgressButton;
 
+import me.drakeet.materialdialog.MaterialDialog;
+
 public class InfoActivity extends AppCompatActivity {
     com.dd.CircularProgressButton logoutBTN;
+    MaterialDialog mMaterialDialog;
+    MaterialDialog commentDialog;
+    RelativeLayout commentRL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        commentRL= (RelativeLayout) findViewById(R.id.rl_info_comment);
+        //mdDialog
+        mMaterialDialog = new MaterialDialog(this).setTitle("确认退出？").setPositiveButton("注销", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(InfoActivity.this,LoginActivity.class));
+                InfoActivity.this.finish();
+
+            }
+        }).setNegativeButton("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMaterialDialog.dismiss();
+            }
+        });
+        //dialog
+
+        commentDialog=new MaterialDialog(this).setContentView(View.inflate(this, R.layout.commentialog, null));
+        commentRL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                commentDialog.show();
+            }
+        });
+
+
         logoutBTN= (CircularProgressButton) findViewById(R.id.btn_info_logout);
         logoutBTN.setProgress(-1);
-        logoutBTN.setIndeterminateProgressMode(true);
         logoutBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logoutBTN.setProgress(99);
-                Toast.makeText(InfoActivity.this,logoutBTN.getProgress()+"progress",Toast.LENGTH_SHORT).show();
+                logoutBTN.setIndeterminateProgressMode(true);
+                logoutBTN.setProgress(2);
+                mMaterialDialog.show();
             }
         });
     }
