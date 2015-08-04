@@ -1,8 +1,10 @@
 package com.feng.DemoTest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
@@ -13,12 +15,14 @@ import java.util.List;
 
 public class MessageActivity extends AppCompatActivity implements ObservableScrollViewCallbacks{
     ListView listView;
+    ImageView settingIV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         listView= (ListView) findViewById(R.id.lv_message_main);
         View head=getLayoutInflater().inflate(R.layout.header_main,listView,false);
+        settingIV= (ImageView) head.findViewById(R.id.iv_header_setting);
         listView.addHeaderView(head);
         //data
         List<MessageItemBean>date=new ArrayList<>();
@@ -28,6 +32,13 @@ public class MessageActivity extends AppCompatActivity implements ObservableScro
         }
         MyAdapter adapter=new MyAdapter(this,date);
         listView.setAdapter(adapter);
+        settingIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MessageActivity.this,InfoActivity.class));
+            }
+        });
+
 
     }
 
@@ -44,4 +55,5 @@ public class MessageActivity extends AppCompatActivity implements ObservableScro
     @Override
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
     }
+
 }
