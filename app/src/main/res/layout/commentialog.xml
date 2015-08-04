@@ -4,8 +4,9 @@
     android:layout_height="match_parent">
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:hint="write your comment here"
-        android:id="@+id/et_comment"/>
+        android:layout_height="100dp"
+        android:id="@+id/et_comment"
+        android:background="@null"
+        android:hint="评论："/>
 
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
 
@@ -38,13 +39,25 @@ public class InfoActivity extends AppCompatActivity {
         });
         //dialog
 
-        commentDialog=new MaterialDialog(this).setContentView(View.inflate(this, R.layout.commentialog, null));
+        commentDialog=new MaterialDialog(this).setContentView(View.inflate(this, R.layout.commentialog, null)).setPositiveButton("提交评论", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(InfoActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                commentDialog.dismiss();
+            }
+        }).setNegativeButton("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                commentDialog.dismiss();
+            }
+        }).setTitle("意见反馈");
         commentRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 commentDialog.show();
             }
         });
+
 
 
         logoutBTN= (CircularProgressButton) findViewById(R.id.btn_info_logout);

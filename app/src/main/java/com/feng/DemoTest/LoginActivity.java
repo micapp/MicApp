@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.dd.CircularProgressButton;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // String phoneNumber="";
+
         XGPushConfig.enableDebug(this, true);
         phoneNum=(EditText)findViewById(R.id.et_login_phone);
         progressButton= (CircularProgressButton) findViewById(R.id.btn_login_login);
@@ -46,11 +48,11 @@ public class LoginActivity extends AppCompatActivity{
                     public void onSuccess(Object data, int flag) {
                         Toast.makeText(context,"注册成功", Toast.LENGTH_SHORT).show();
                         progressButton.setProgress(100);
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            Thread.sleep(1000);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
                         startActivity(new Intent(LoginActivity.this,MessageActivity.class));
                     }
 
