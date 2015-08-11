@@ -61,6 +61,7 @@ public class MessageActivity extends AppCompatActivity implements ObservableScro
         });
 
 
+
     }
 
     @Override
