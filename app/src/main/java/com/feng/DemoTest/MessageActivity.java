@@ -2,30 +2,45 @@ package com.feng.DemoTest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.baoyz.widget.PullRefreshLayout;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.race604.flyrefresh.FlyRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessageActivity extends AppCompatActivity implements ObservableScrollViewCallbacks{
-    PullRefreshLayout pullRefreshLayout;
     ListView listView;
     ImageView settingIV;
+    private Handler mHandler = new Handler();
+    com.race604.flyrefresh.FlyRefreshLayout fly;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
-        //new pull to refresh
-        pullRefreshLayout= (PullRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        pullRefreshLayout.setRefreshStyle(PullRefreshLayout.STYLE_RING);
-        //refresh
+        fly= (FlyRefreshLayout) findViewById(R.id.fly_layout);
+        fly.setOnPullRefreshListener(new FlyRefreshLayout.OnPullRefreshListener() {
+            @Override
+            public void onRefresh(FlyRefreshLayout flyRefreshLayout) {
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        fly.onRefreshFinish();
+                    }
+                }, 1000);
+            }
+
+            @Override
+            public void onRefreshAnimationEnd(FlyRefreshLayout flyRefreshLayout) {
+
+            }
+        });
         listView= (ListView) findViewById(R.id.lv_message_main);
         View head=getLayoutInflater().inflate(R.layout.header_main,listView,false);
         settingIV= (ImageView) head.findViewById(R.id.iv_header_setting);

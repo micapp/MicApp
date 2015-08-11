@@ -1,16 +1,15 @@
-<com.baoyz.widget.PullRefreshLayout
-    android:id="@+id/swipeRefreshLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.feng.DemoTest.MessageActivity">
+    <com.race604.flyrefresh.FlyRefreshLayout
+        android:id="@+id/fly_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/lv_message_main" />
+    </com.race604.flyrefresh.FlyRefreshLayout>
 
 </RelativeLayout>
-</com.baoyz.widget.PullRefreshLayout>

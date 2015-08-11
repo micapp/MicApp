@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.baoyz.widget.PullRefreshLayout;
+
 import com.dd.CircularProgressButton;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushConfig;
@@ -35,7 +35,12 @@ public class LoginActivity extends AppCompatActivity{
         progressButton.setIndeterminateProgressMode(true);
         getcodeButton.setIndeterminateProgressMode(true);
         // progressButton.setOnClickListener(new MyTestClick(progressButton));
-        getcodeButton.setOnClickListener(new MyTestClick(getcodeButton));
+        getcodeButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,CardActivity.class));
+            }
+        });
         progressButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

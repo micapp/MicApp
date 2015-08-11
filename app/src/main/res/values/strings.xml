@@ -7,4 +7,6 @@
     <string name="title_activity_login_success">LoginSuccessActivity</string>
     <string name="title_activity_message">MessageActivity</string>
     <string name="title_activity_info">InfoActivity</string>
+    <string name="title_activity_mlv">MLVActivity</string>
+    <string name="title_activity_card">CardActivity</string>
 </resources>
