@@ -34,4 +34,5 @@ dependencies {
     compile 'me.drakeet.materialdialog:library:1.2.2'
     compile 'com.race604.flyrefresh:library:1.0.2'
     compile 'com.github.gabrielemariotti.cards:cardslib-core:2.1.0'
+    compile 'in.srain.cube:ultra-ptr:1.0.10'
 }
