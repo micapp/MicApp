@@ -125,6 +125,10 @@
             android:name=".CardActivity"
             android:label="@string/title_activity_card" >
         </activity>
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:label="@string/title_activity_change_password" >
+        </activity>
     </application>
 
 </manifest>

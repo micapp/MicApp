@@ -38,9 +38,18 @@ public class LoginActivity extends AppCompatActivity{
         getcodeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,CardActivity.class));
+                startActivity(new Intent(LoginActivity.this, CardActivity.class));
             }
         });
+        //long press test
+        progressButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                startActivity(new Intent(LoginActivity.this,MessageActivity.class));
+                return true;
+            }
+        });
+        //
         progressButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,15 +67,28 @@ public class LoginActivity extends AppCompatActivity{
 //                        } catch (InterruptedException e) {
 //                            e.printStackTrace();
 //                        }
-                        startActivity(new Intent(LoginActivity.this,MessageActivity.class));
+                        progressButton.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(new Intent(LoginActivity.this, MessageActivity.class));
+                            }
+                        },1000);
+//                        startActivity(new Intent(LoginActivity.this, MessageActivity.class));
                     }
 
                     @Override
                     public void onFail(Object data, int errCode, String msg) {
-                        Toast.makeText(context,"注册失败", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context,"注册失败", Toast.LENGTH_SHORT).show();
                         progressButton.setProgress(-1);
+                        progressButton.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressButton.setProgress(0);
+                            }
+                        }, 2000);
                     }
                 });
+
 
             }
         });

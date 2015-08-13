@@ -1,6 +1,7 @@
 package com.feng.DemoTest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.util.Size;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ import it.gmariotti.cardslib.library.view.CardListView;
 public class CardActivity extends AppCompatActivity implements Card.OnCardClickListener{
     private PtrFrameLayout ptrFrameLayout;
     private StoreHouseHeader header;
+    ImageView settingIV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         header=new StoreHouseHeader(CardActivity.this);
@@ -40,7 +43,8 @@ public class CardActivity extends AppCompatActivity implements Card.OnCardClickL
         setContentView(R.layout.activity_card);
         header.setPadding(0, PtrLocalDisplay.dp2px(20), 0, PtrLocalDisplay.dp2px(20));
         header.initWithString("HOTDOOR", 50);
-        header.setTextColor(Color.BLACK);
+        header.setTextColor(Color.GRAY);
+        header.setLineWidth(4);
         ptrFrameLayout= (PtrFrameLayout) findViewById(R.id.store_house_ptr_frame);
         ptrFrameLayout.setHeaderView(header);
         ptrFrameLayout.addPtrUIHandler(header);
@@ -60,9 +64,7 @@ public class CardActivity extends AppCompatActivity implements Card.OnCardClickL
                 }, 1800);
             }
         });
-        //ArrayList<Card> cards = new ArrayList<>();
         ArrayList<Card> cards=new ArrayList< >();
-//        Card card = new Card(getApplicationContext(),R.layout.message_item);
         MyCard card=new MyCard(getApplicationContext(),R.layout.message_item);
         for (int i=0;i<1000;i++)
         {
@@ -71,28 +73,20 @@ public class CardActivity extends AppCompatActivity implements Card.OnCardClickL
             cards.add(makecard("2015年8月" + i + "日",
                     "1372625" + i,"This is a message you see for test hahahaha\n(╯‵□′)╯︵┻━┻  \n（╯－＿－）╯╧╧\n" + i,ic[i*10%6]));
         }
-//        for (int i = 0; i < 30; i++) {
-//            card.setDate("2015年8月" + i + "日");
-//            card.setPhone("1372625" + i);
-//            card.setIcon(android.R.drawable.ic_lock_idle_alarm);
-//            card.setMessage("This is a message you see for test hahahaha\n(╯‵□′)╯︵┻━┻  \n（╯－＿－）╯╧╧\n" + i);
-//            cards.add(card);
-//        }
-//        List<MessageItemBean> date=new ArrayList<>();
-//        for (int i=0;i<30;i++)
-//        {
-//            date.add(new MessageItemBean("2015年8月"+i+"日",android.R.drawable.ic_lock_idle_alarm,"This is a message you see for test hahahaha\n(╯‵□′)╯︵┻━┻  \n（╯－＿－）╯╧╧\n"+i,"1372625"+i));
-//        }
-//
-//        MyAdapter myAdapter=new MyAdapter(CardActivity.this,date);
         CardArrayAdapter adapter=new CardArrayAdapter(CardActivity.this,cards);
         CardListView cardListView = (CardListView) findViewById(R.id.cardlv);
 
         View head=getLayoutInflater().inflate(R.layout.header_main,cardListView,false);
+        settingIV= (ImageView) head.findViewById(R.id.iv_header_setting);
+        settingIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CardActivity.this,InfoActivity.class));
+            }
+        });
         cardListView.addHeaderView(head);
         if(cardListView!=null)
         {
-//            cardListView.setExternalAdapter(myAdapter,adapter);
             cardListView.setAdapter(adapter);
         }
         card.setOnClickListener(this);

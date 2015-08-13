@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dd.CircularProgressButton;
@@ -18,6 +20,7 @@ public class InfoActivity extends AppCompatActivity {
     MaterialDialog mMaterialDialog;
     MaterialDialog commentDialog;
     RelativeLayout commentRL;
+    RelativeLayout changePWD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +30,7 @@ public class InfoActivity extends AppCompatActivity {
         mMaterialDialog = new MaterialDialog(this).setTitle("确认退出？").setPositiveButton("注销", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InfoActivity.this,LoginActivity.class));
+                startActivity(new Intent(InfoActivity.this, LoginActivity.class));
                 InfoActivity.this.finish();
 
             }
@@ -35,14 +38,20 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mMaterialDialog.dismiss();
+                logoutBTN.setProgress(0);
             }
-        });
+        }).setMessage("退出后将接收不到推送");
         //dialog
-
-        commentDialog=new MaterialDialog(this).setContentView(View.inflate(this, R.layout.commentialog, null)).setPositiveButton("提交评论", new View.OnClickListener() {
+        View comment= View.inflate(this, R.layout.commentialog, null);
+        final EditText mycomment= (EditText) comment.findViewById(R.id.et_comment);
+        mycomment.setFocusable(true);
+        mycomment.setFocusableInTouchMode(true);
+        mycomment.requestFocus();
+        commentDialog=new MaterialDialog(this).setContentView(comment).setPositiveButton("提交评论", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(InfoActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(InfoActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(InfoActivity.this, mycomment.getText().toString(), Toast.LENGTH_SHORT).show();
                 commentDialog.dismiss();
             }
         }).setNegativeButton("取消", new View.OnClickListener() {
@@ -58,10 +67,16 @@ public class InfoActivity extends AppCompatActivity {
             }
         });
 
+        changePWD= (RelativeLayout) findViewById(R.id.rl_info_account);
+        changePWD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(InfoActivity.this,ChangePasswordActivity.class));
+            }
+        });
 
 
         logoutBTN= (CircularProgressButton) findViewById(R.id.btn_info_logout);
-        logoutBTN.setProgress(-1);
         logoutBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
