@@ -124,6 +124,9 @@
         android:layout_marginBottom="30dp"
         app:cpb_colorProgress="#00ffffff"
         app:cpb_colorIndicator= "#fd4444"
-
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+/>
 </RelativeLayout>
