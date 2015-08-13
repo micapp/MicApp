@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.dd.CircularProgressButton;
 
 import me.drakeet.materialdialog.MaterialDialog;
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public class InfoActivity extends AppCompatActivity {
     com.dd.CircularProgressButton logoutBTN;

@@ -8,10 +8,14 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import com.dd.CircularProgressButton;
 
-public class ChangePasswordActivity extends AppCompatActivity {
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
+public class ChangePasswordActivity extends AppCompatActivity{
     CircularProgressButton confirmPWD;
     EditText password1,password2;
 
@@ -24,7 +28,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
         password2 = (EditText) findViewById(R.id.et_changepassword_newpwd2);
         password1.addTextChangedListener(textWatcher);
         password2.addTextChangedListener(textWatcher);
-
     }
     private TextWatcher textWatcher=new TextWatcher() {
         @Override
